@@ -1,0 +1,12 @@
+{
+    "mysql":{
+        "database": "salao",
+        "user": "root",
+        "password": " ",
+        "host": "127.0.0.1",
+        "port": "3306"
+    },
+    "api":{
+        "port": "3000"
+    }
+}
