@@ -4,6 +4,5 @@ ModeloTabelaAgendamento.sync()
   .then(() =>{
       console.log('Tabela criada com sucesso')
   })
-   .cath(
-       console.log('Error, tabela nao criada')
-   );
+   .cath(() =>{
+       console.log('Error, tabela nao criada')});

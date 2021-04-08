@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const instaciadb = require('../db');
+const instanciadb = require('../db');
 
 const columns = {
     nome_cliente: {
@@ -29,4 +29,4 @@ const sequelizeOptions = {
     updatedAt: 'data_atualizacao'
 }
 
-module.exports = instaciadb.defined('agendamento', columns, sequelizeOptions)
+module.exports = instanciadb.define('agendamento', columns, sequelizeOptions)

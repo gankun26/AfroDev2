@@ -13,4 +13,4 @@ const instancia = new Sequelize(
     }
 );
 
-mudule.exports = instancia;
+module.exports = instancia;
