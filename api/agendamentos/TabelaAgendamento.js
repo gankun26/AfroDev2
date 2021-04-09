@@ -21,5 +21,13 @@ module.exports = {
                 id:id
             }
         });
+    },
+
+    async atualizar(id, dados){
+        return await modeloAgendamento.update(dados, {
+            where:{
+                id:id
+            }
+        })
     }
 }
