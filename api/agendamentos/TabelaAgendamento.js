@@ -2,32 +2,54 @@ const modeloAgendamento = require('./modelTabelaAgendamento');
 
 module.exports = {
     async listar(){
-        return await modeloAgendamento.findAll({
-            raw: true,
-        });
+        try{
+            return await modeloAgendamento.findAll({
+                raw: true,
+            });
+        }catch(error){
+             throw error
+        };
+        
     },
 
     async adicionar(agendamento){
-        return await modeloAgendamento.create(agendamento);
+        try{
+            return await modeloAgendamento.create(agendamento);
+        }catch(error){
+            throw error
+        };
     },
 
     async buscarPorPk(id){
-        return await modeloAgendamento.findByPk(id);
+        try{
+            return await modeloAgendamento.findByPk(id);
+        }catch(error){
+            throw error
+        };
+        
     },
 
     async remover(id){
-        return await modeloAgendamento.distory({
-            where:{
-                id:id
-            }
-        });
+        try{
+            return await modeloAgendamento.distory({
+                where:{
+                    id:id
+                }
+            });
+        }catch(error){
+            throw error
+        };
     },
 
     async atualizar(id, dados){
+       try{
         return await modeloAgendamento.update(dados, {
             where:{
                 id:id
             }
         })
+       }catch(error){
+           throw error
+       };
     }
 }
