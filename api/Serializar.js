@@ -1,17 +1,39 @@
 const FormatoInvalido = require('./errors/FormatoInvalido');
+const jsontoxml = require('jsontoxml');
 
 class Serializar {
     json(dados){
         return JSON.stringify(dados)
     };
 
-    tranformar(dados){
-        if(this.contentType !== 'application/json'){
-            throw new FormatoInvalido(this.contentType)
+    xml(dados){
+        if(Array.isArray(dados)){
+            dados = dados.map((item) =>{
+                return {
+                   [this.tag]: item
+                }
+            });
+            this.tag = this.tagList;
         }
-        return this.json(
-            this.filtrar(dados)
-            );
+        
+        return jsontoxml({
+            [this.tag]: dados
+        });
+    }
+
+    transformar(dados){
+        dados = this.filtrar(dados);
+        if(this.contentType !== 'application/json'){
+            return this.json(
+                dados
+            )
+        }
+        if(this.contentType === 'application/xml'){
+            return this.xml(
+                dados
+            )
+        }
+        throw new FormatoInvalido(this.contentType);
     };
 
     filtrarCampos(dados){
@@ -58,9 +80,23 @@ class SerializarErro extends Serializar{
    }
 }
 
+class SerealizarUsuario extends Serealizar{
+    constructor(contentType, camposPersonalizados){
+        super();
+        this.contentType = contentType;
+        this.camposPermitidos = [
+            'id', 'nome', 'email', 'senha'
+        ].concat(camposPersonalizados || []);
+        this.tag = 'Usuario';
+        this.tagList = 'Usuarios';
+
+    }
+}
+
 module.exports = {
     Serializar: Serializar,
     SerializarAgendamento: SerializarAgendamento,
     SerializarErro: SerializarErro,
-    FormatosValidos: ['application/json']
+    SerealizarUsuario: SerealizarUsuario,
+    FormatosValidos: ['application/json', 'application/xml']
 }
