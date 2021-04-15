@@ -1,6 +1,6 @@
 class NaoEncontrado extends Error{
-    constructor(){
-      super('Agendamento nao encontrado');
+    constructor(classe){
+      super(`${classe} nao encontrado`);
       this.name = 'NaoEncontrado';
       this.idError = 5;
      }

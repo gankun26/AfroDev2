@@ -80,7 +80,7 @@ class SerializarErro extends Serializar{
    }
 }
 
-class SerealizarUsuario extends Serealizar{
+class SerializarUsuario extends Serializar{
     constructor(contentType, camposPersonalizados){
         super();
         this.contentType = contentType;
@@ -97,6 +97,6 @@ module.exports = {
     Serializar: Serializar,
     SerializarAgendamento: SerializarAgendamento,
     SerializarErro: SerializarErro,
-    SerealizarUsuario: SerealizarUsuario,
+    SerializarUsuario: SerializarUsuario,
     FormatosValidos: ['application/json', 'application/xml']
 }
